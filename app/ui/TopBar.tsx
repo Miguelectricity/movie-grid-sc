@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import GenreSelect from "./GenreSelect";
+import SortSelect from "./SortSelect";
 
 
 export default function TopBar() {
@@ -12,19 +13,7 @@ export default function TopBar() {
                     <GenreSelect />
                 </Suspense>
             </div>
-            <div className="flex flex-row gap-2 items-center">
-                <label htmlFor="sortSelect">Sort by</label>
-                <select 
-                    id="sortSelect" 
-                    className="rounded-lg bg-gray-800 text-gray-200 p-2" 
-                    defaultValue={'popularity'}
-                >
-                    <option value="popularity">Popularity</option>
-                    <option value="title">Title</option>
-                    <option value="year">Release year</option>
-                    <option value="rating">Rating</option>
-                </select>
-            </div>
+            <SortSelect />
         </div>
     );
 }

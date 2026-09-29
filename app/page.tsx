@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { GenresApiResponse } from "./lib/schema";
 import { GenresProvider } from "./ui/GenreProvider";
+import { SortProvider } from "./ui/SortProvider";
 import TopBar from "./ui/TopBar";
 import MoviesPage from "./ui/MoviesPage";
 
@@ -20,12 +21,14 @@ export default async function Home({ searchParams }: HomeProps) {
 
   return (
     <GenresProvider genres={genres}>
-      <div className="flex flex-col p-12 bg-gray-900">
-        <TopBar />
-        <Suspense>
-          <MoviesPage genreId={genreId}/>
-        </Suspense>
-      </div>
+      <SortProvider>
+        <div className="flex flex-col p-12 bg-gray-900">
+          <TopBar />
+          <Suspense>
+            <MoviesPage genreId={genreId}/>
+          </Suspense>
+        </div>
+      </SortProvider>
     </GenresProvider>
   );
 }
