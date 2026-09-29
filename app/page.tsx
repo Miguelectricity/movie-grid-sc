@@ -9,10 +9,10 @@ export default async function Home() {
 
 
   return (
-    <ul>
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4 m-12">
       {data.results.map((movie) => (
         <MovieCard key={movie.id} movie={movie}/>
       ))}
-    </ul>
+    </div>
   );
 }
