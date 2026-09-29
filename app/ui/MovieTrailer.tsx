@@ -37,7 +37,7 @@ export default function MovieTrailer({ movieId, title }: MovieTrailerProps) {
     if (!trailerKey) return null;
 
     return (
-        <div className="pointer-events-none">
+        <div>
             <YouTubeEmbed videoId={trailerKey} title={`${title} trailer`} />
         </div>
     );

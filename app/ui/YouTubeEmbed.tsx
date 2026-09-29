@@ -6,10 +6,12 @@ type YouTubeEmbedProps = {
 export default function YouTubeEmbed({ videoId, title }: YouTubeEmbedProps) {
     const params = new URLSearchParams({
         autoplay: "1",
+        mute: "0",
         playsinline: "1",
         loop: "0",
         playlist: videoId,
-        controls: "0",
+        controls: "1",
+        enablejsapi: "1",
     });
 
     return (

@@ -4,6 +4,7 @@ A movie browser built with Next.js (App Router), TypeScript, Tailwind CSS and Zo
 
 ## Requirements
 
+- A modern browser like Chrome, Firefox, Safari, etc.
 - Node.js 20.9 or later
 - A TMDB API key.
 
@@ -37,7 +38,7 @@ npm run dev
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) in a modern browser (not VSCode browser).
 
 ## Project structure
 
