@@ -12,6 +12,7 @@ export default function GenreSelect() {
 
     return (
         <select
+            id="genreSelect"
             key={selectedGenreId}
             defaultValue={selectedGenreId}
             onChange={(e) => {

@@ -14,6 +14,7 @@ const Movie = z.object({
     release_date: z.string(),
     vote_average: z.number(),
     genre_ids: z.array(z.number()),
+    popularity: z.number(),
 });
 export type Movie = z.infer<typeof Movie>;
 
