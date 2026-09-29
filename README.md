@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MovieFlix
 
-## Getting Started
+A movie browser built with Next.js (App Router), TypeScript, Tailwind CSS and Zod, using data from [The Movie Database (TMDB)](https://www.themoviedb.org/).
 
-First, run the development server:
+## Requirements
+
+- Node.js 20.9 or later
+- A TMDB API key.
+
+## Setup
+
+1. Install dependencies:
+
+   ```bash
+   npm i
+   ```
+
+2. Create a file named `.env.local` in the project root with your key:
+
+   ```bash
+   TMDB_API_KEY=your-api-key-here
+   ```
+
+   The key is only used on the server and is never sent to the browser. `.env*` files are gitignored.
+
+## Running
+
+**Development:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Production:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  page.tsx                  Home page: reads ?genreId, fetches genres, sets up providers
+  layout.tsx                Root layout and fonts
+  api/trailer/[id]/route.ts Looks up a movie's YouTube trailer on TMDB (keeps the API key on the server)
+  lib/schema.ts             Zod schemas for TMDB responses; TypeScript types are inferred from them
+  ui/
+    MoviesPage.tsx          Server component: fetches movies for the selected genre
+    MovieGrid.tsx           Responsive grid; applies the current sort
+    MovieCard.tsx           Poster with hover overlay
+    MovieTrailer.tsx        Fetches and shows the trailer after a short hover
+    YouTubeEmbed.tsx        YouTube iframe embed
+    TopBar.tsx              Title, genre filter and sort controls
+    GenreSelect.tsx         Genre dropdown; updates the URL
+    SortSelect.tsx          Sort dropdown and direction toggle
+    GenreProvider.tsx       Context: list of genres
+    SortProvider.tsx        Context: current sort key and direction
+    Tag.tsx                 Pill-shaped label used for genres
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+- **Sorting** I wanted to note that on a production app, sorting at the database level is the practice I would normally go with given a high number of items. I made the product decision (given that it was allowed in the requirements) to do client-side rendering given the scope of this project. Additional complexity would be introduced if we passed sorting to url/request because obscure videos with low popularity may be displayed, among other things.
