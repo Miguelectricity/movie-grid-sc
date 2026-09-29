@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { ApiResponse } from "./lib/schema";
+import MovieCard from "./ui/MovieCard";
 
 export default async function Home() {
   const res = await fetch(
@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <ul>
       {data.results.map((movie) => (
-        <li key={movie.id}>{movie.title}</li>
+        <MovieCard key={movie.id} movie={movie}/>
       ))}
     </ul>
   );

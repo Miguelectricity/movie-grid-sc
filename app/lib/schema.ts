@@ -7,7 +7,7 @@ const Movie = z.object({
     backdrop_path: z.string(),
 });
 
-type Movie = z.infer<typeof Movie>;
+export type Movie = z.infer<typeof Movie>;
 
 export const ApiResponse = z.object({
     results: z.array(Movie),
