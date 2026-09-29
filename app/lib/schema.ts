@@ -1,5 +1,11 @@
 import { z } from 'zod';
 
+const Genre = z.object({
+    id: z.number(),
+    name: z.string(),
+});
+export type Genre = z.infer<typeof Genre>;
+
 const Movie = z.object({
     id: z.number(),
     title: z.string(),
@@ -8,9 +14,12 @@ const Movie = z.object({
     release_date: z.string(),
     vote_average: z.number(),
 });
-
 export type Movie = z.infer<typeof Movie>;
 
-export const ApiResponse = z.object({
+export const GenresApiResponse = z.object({
+    genres: z.array(Genre),
+});
+
+export const MoviesApiResponse = z.object({
     results: z.array(Movie),
 });

@@ -8,7 +8,7 @@ type MovieCardProps = {
 export default function MovieCard({ movie }: MovieCardProps) {
     return (
         <div className="flex flex-col items-center gap-2 rounded-lg p-2">
-            <div className="group relative hover:z-10 hover:scale-125 transition-transform duration:300">
+            <div className="group relative hover:z-10 hover:scale-125 transition-transform duration-500">
                 <Image
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
@@ -18,10 +18,10 @@ export default function MovieCard({ movie }: MovieCardProps) {
                 />
                 
 
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-hover:delay-200 duration-500 bg-black/80 p-2 rounded-lg text-white text-sm">
-                    <p>{movie.release_date}</p>
-                    <p>★ {movie.vote_average}</p>
-                    <p className="line-clamp-6">{movie.overview}</p>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-hover:delay-200 duration-500 bg-black/80 p-2 rounded-lg text-white text-sm gap-4">
+                    <p>{movie.release_date.slice(0,4)}</p>
+                    <p>★ {movie.vote_average.toFixed(1)}</p>
+                    <p className="line-clamp-10">{movie.overview}</p>
                 </div>
             </div>
             <h2 className="text-center text-gray-300">{movie.title}</h2>
