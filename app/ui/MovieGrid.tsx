@@ -34,7 +34,7 @@ export default function MovieGrid({ movies }: MovieGridProps) {
     const sortedMovies = movies.toSorted((a, b) => compare[sortKey](a, b) * sign);
 
     return (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
             {sortedMovies.map((movie) => (
                 <MovieCard 
                     key={movie.id} 

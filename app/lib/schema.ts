@@ -25,3 +25,19 @@ export const GenresApiResponse = z.object({
 export const MoviesApiResponse = z.object({
     results: z.array(Movie),
 });
+
+const Video = z.object({
+    key: z.string(),
+    site: z.string(),
+    type: z.string(),
+    official: z.boolean(),
+});
+
+export const VideosApiResponse = z.object({
+    results: z.array(Video),
+});
+
+// Shape of our own /api/trailer/[id] response.
+export const TrailerResponse = z.object({
+    key: z.string().nullable(),
+});
