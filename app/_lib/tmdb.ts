@@ -17,6 +17,7 @@ async function tmdbFetch(path: string, params: Record<string, string> = {}) {
     if (!res.ok) {
         throw new TmdbError(res.status);
     }
+    
     return res.json();
 }
 
@@ -30,9 +31,11 @@ export async function discoverMovies(params: MovieSearchParams) {
         sort_by: `${tmdbSortField[params.sort]}.${params.dir}`,
         page: String(params.page),
     };
+
     if (params.genreId) {
         query.with_genres = String(params.genreId);
     }
+
     if (params.minVotes > 0) {
         query["vote_count.gte"] = String(params.minVotes);
     }

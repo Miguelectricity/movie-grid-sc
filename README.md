@@ -2,10 +2,8 @@
 
 A movie preview browser built with Next.js, TypeScript, Tailwind CSS and Zod, using data from [The Movie Database (TMDB)](https://www.themoviedb.org/).
 
-## Features
 
-
-- Click somewhere on the page before hovering to enable autoplay of the trailers (on a modern browser).
+- Click somewhere random on the page a few times before hovering to enable autoplay of the trailers (on a modern browser).
 
 ## Requirements
 
