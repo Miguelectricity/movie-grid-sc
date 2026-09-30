@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import { Genre } from "../lib/schema";
+import { Genre } from "@/app/_lib/schema";
 
 const GenresContext = createContext<Genre[] | null>(null);
 

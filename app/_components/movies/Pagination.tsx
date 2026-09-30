@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MovieSearchParams } from "../lib/searchParams";
+import { MovieSearchParams } from "@/app/_lib/searchParams";
 
 type PaginationProps = {
     params: MovieSearchParams;

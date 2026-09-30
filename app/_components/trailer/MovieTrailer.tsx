@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { TrailerResponse } from "../lib/schema";
-import YouTubeEmbed from "./YouTubeEmbed";
+import { TrailerResponse } from "@/app/_lib/schema";
+import YouTubeEmbed from "@/app/_components/trailer/YouTubeEmbed";
 
 const HOVER_DELAY_MS = 600;
 

@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Movie } from '../lib/schema';
-import MovieTrailer from "./MovieTrailer";
-import Tag from "./Tag";
+import { Movie } from "@/app/_lib/schema";
+import MovieTrailer from "@/app/_components/trailer/MovieTrailer";
+import Tag from "@/app/_components/shared/Tag";
 
 type MovieCardProps = {
     movie: Movie;

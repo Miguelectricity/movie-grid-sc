@@ -1,8 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { MovieSearchParams } from "../lib/searchParams";
-import { useSetSearchParam } from "./useSetSearchParam";
+import { MovieSearchParams } from "@/app/_lib/searchParams";
+import { useSetSearchParam } from "@/app/_components/filters/useSetSearchParam";
 
 // TMDB has no popularity filter, so a minimum vote count stands in for it.
 const MIN_VOTES_OPTIONS = [

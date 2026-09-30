@@ -1,8 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useGenres } from "./GenreProvider";
-import { useSetSearchParam } from "./useSetSearchParam";
+import { useGenres } from "@/app/_components/shared/GenreProvider";
+import { useSetSearchParam } from "@/app/_components/filters/useSetSearchParam";
 
 export default function GenreSelect() {
     const genres = useGenres();

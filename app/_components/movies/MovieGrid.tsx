@@ -1,9 +1,9 @@
 "use client";
 
 import { useMemo } from "react";
-import { Movie } from "../lib/schema";
-import { useGenres } from "./GenreProvider";
-import MovieCard from "./MovieCard";
+import { Movie } from "@/app/_lib/schema";
+import { useGenres } from "@/app/_components/shared/GenreProvider";
+import MovieCard from "@/app/_components/movies/MovieCard";
 
 type MovieGridProps = {
     movies: Movie[];

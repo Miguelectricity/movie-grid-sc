@@ -1,9 +1,9 @@
 import { Suspense } from "react";
-import { GenresApiResponse } from "./lib/schema";
-import { MovieSearchParams } from "./lib/searchParams";
-import { GenresProvider } from "./ui/GenreProvider";
-import TopBar from "./ui/TopBar";
-import MoviesPage from "./ui/MoviesPage";
+import { MovieSearchParams } from "@/app/_lib/searchParams";
+import { getGenres } from "@/app/_lib/tmdb";
+import { GenresProvider } from "@/app/_components/shared/GenreProvider";
+import TopBar from "@/app/_components/filters/TopBar";
+import MoviesPage from "@/app/_components/movies/MoviesPage";
 
 export type SearchParams = {
   genreId?: string;
@@ -20,8 +20,7 @@ type HomeProps = {
 export default async function Home({ searchParams }: HomeProps) {
   const params = MovieSearchParams.parse(await searchParams);
 
-  const genresRes = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.TMDB_API_KEY}`);
-  const genres = GenresApiResponse.parse(await genresRes.json()).genres;
+  const genres = await getGenres();
 
   return (
     <GenresProvider genres={genres}>

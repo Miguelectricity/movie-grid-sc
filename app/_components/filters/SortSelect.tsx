@@ -1,8 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { MovieSearchParams, SortDirection, sortLabels } from "../lib/searchParams";
-import { useSetSearchParam } from "./useSetSearchParam";
+import { MovieSearchParams, SortDirection, sortLabels } from "@/app/_lib/searchParams";
+import { useSetSearchParam } from "@/app/_components/filters/useSetSearchParam";
 
 export default function SortSelect() {
     const searchParams = useSearchParams();

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import GenreSelect from "./GenreSelect";
-import MinVotesSelect from "./MinVotesSelect";
-import SortSelect from "./SortSelect";
+import GenreSelect from "@/app/_components/filters/GenreSelect";
+import MinVotesSelect from "@/app/_components/filters/MinVotesSelect";
+import SortSelect from "@/app/_components/filters/SortSelect";
 
 
 export default function TopBar() {

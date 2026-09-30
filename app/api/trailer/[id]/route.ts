@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { VideosApiResponse } from "@/app/lib/schema";
+import { getMovieVideos, TmdbError } from "@/app/_lib/tmdb";
 
 const MovieId = z.coerce.number().int().positive();
 
@@ -12,17 +12,15 @@ export async function GET(_request: Request, ctx: RouteContext<"/api/trailer/[id
     }
     const movieId = parsedId.data;
 
-    const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${process.env.TMDB_API_KEY}&language=en-US`
-    );
-    if (!res.ok) {
-        return Response.json({ key: null }, { status: res.status === 404 ? 404 : 502 });
+    let allVideos;
+    try {
+        allVideos = await getMovieVideos(movieId);
+    } catch (error) {
+        const status = error instanceof TmdbError && error.status === 404 ? 404 : 502;
+        return Response.json({ key: null }, { status });
     }
 
-    const videos = VideosApiResponse
-        .parse(await res.json())
-        .results
-        .filter((video) => video.site === "YouTube");
+    const videos = allVideos.filter((video) => video.site === "YouTube");
 
     const trailer =
         videos.find((video) => video.type === "Trailer" && video.official) ??
