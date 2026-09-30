@@ -17,9 +17,7 @@ export default function Pagination({ params, totalPages }: PaginationProps) {
         query.set("sort", params.sort);
         query.set("dir", params.dir);
 
-        if (params.minVotes > 0) {
-            query.set("minVotes", String(params.minVotes));
-        }
+        query.set("minVotes", String(params.minVotes));
 
         query.set("page", String(page));
 

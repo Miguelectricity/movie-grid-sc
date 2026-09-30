@@ -15,7 +15,7 @@ export const MovieSearchParams = z.object({
     genreId: z.coerce.number().int().positive().optional().catch(undefined),
     sort: z.enum(SORT_KEYS).catch("popularity"),
     dir: z.enum(SortDirection).catch(SortDirection.DESCENDING),
-    minVotes: z.coerce.number().int().min(0).catch(0),
+    minVotes: z.coerce.number().int().min(0).catch(1000),
     page: z.coerce.number().int().min(1).max(MAX_TMDB_PAGE).catch(1),
 });
 export type MovieSearchParams = z.infer<typeof MovieSearchParams>;
