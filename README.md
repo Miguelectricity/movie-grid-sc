@@ -1,6 +1,16 @@
-# MovieFlix
+# PreviewFlix
 
-A movie preview browser built with Next.js (App Router), TypeScript, Tailwind CSS and Zod, using data from [The Movie Database (TMDB)](https://www.themoviedb.org/).
+A movie preview browser built with Next.js, TypeScript, Tailwind CSS and Zod, using data from [The Movie Database (TMDB)](https://www.themoviedb.org/).
+
+## Features
+
+- Grid of movies with poster, release year, rating, genres and overview
+- Filter by genre
+- Filter by minimum number of votes (Any, 100+, 1,000+; defaults to 1,000+)
+- Sort by popularity, title, release year or rating, ascending or descending
+- Previous/Next pagination
+- Hover a poster to see details; keep hovering to play the movie's trailer
+- Click somewhere on the page before hovering to enable autoplay of the trailers.
 
 ## Requirements
 
@@ -22,8 +32,6 @@ A movie preview browser built with Next.js (App Router), TypeScript, Tailwind CS
    TMDB_API_KEY=your-api-key-here
    ```
 
-   The key is only used on the server and is never sent to the browser. `.env*` files are gitignored.
-
 ## Running
 
 **Development:**
@@ -37,6 +45,8 @@ npm run dev
 ```bash
 npm start
 ```
+
+`npm start` builds the app first (via the `prestart` script), then starts the production server.
 
 Open [http://localhost:3000](http://localhost:3000) in a modern browser (not VSCode browser).
 
