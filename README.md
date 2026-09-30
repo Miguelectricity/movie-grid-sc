@@ -74,3 +74,4 @@ app/
       Tag.tsx                 Pill-shaped label used for genres
 ```
 
+Have fun watching movie previews!
