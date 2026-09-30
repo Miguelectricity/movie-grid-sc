@@ -2,12 +2,12 @@
 
 import { useSearchParams } from "next/navigation";
 import { useGenres } from "./GenreProvider";
-import { useRouter } from "next/navigation";
+import { useSetSearchParam } from "./useSetSearchParam";
 
 export default function GenreSelect() {
-    const router = useRouter();
     const genres = useGenres();
     const searchParams = useSearchParams();
+    const setSearchParam = useSetSearchParam();
     const selectedGenreId = searchParams.get('genreId') ?? '';
 
     return (
@@ -15,10 +15,7 @@ export default function GenreSelect() {
             id="genreSelect"
             key={selectedGenreId}
             defaultValue={selectedGenreId}
-            onChange={(e) => {
-                const id = e.target.value;
-                router.push(id ? `/?genreId=${id}` : "/");
-            }}
+            onChange={(e) => setSearchParam("genreId", e.target.value || null)}
             className="rounded-lg bg-gray-800 text-gray-200 p-2"
         >
             <option value="">All</option>

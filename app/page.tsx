@@ -1,12 +1,16 @@
 import { Suspense } from "react";
 import { GenresApiResponse } from "./lib/schema";
+import { MovieSearchParams } from "./lib/searchParams";
 import { GenresProvider } from "./ui/GenreProvider";
-import { SortProvider } from "./ui/SortProvider";
 import TopBar from "./ui/TopBar";
 import MoviesPage from "./ui/MoviesPage";
 
 export type SearchParams = {
   genreId?: string;
+  sort?: string;
+  dir?: string;
+  minVotes?: string;
+  page?: string;
 };
 
 type HomeProps = {
@@ -14,21 +18,19 @@ type HomeProps = {
 };
 
 export default async function Home({ searchParams }: HomeProps) {
-  const { genreId } = await searchParams;
+  const params = MovieSearchParams.parse(await searchParams);
 
   const genresRes = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.TMDB_API_KEY}`);
   const genres = GenresApiResponse.parse(await genresRes.json()).genres;
 
   return (
     <GenresProvider genres={genres}>
-      <SortProvider>
-        <div className="flex flex-col p-12 bg-gray-900">
-          <TopBar />
-          <Suspense>
-            <MoviesPage genreId={genreId}/>
-          </Suspense>
-        </div>
-      </SortProvider>
+      <div className="flex flex-col p-16 bg-gray-900">
+        <TopBar />
+        <Suspense key={JSON.stringify(params)} fallback={<p className="text-gray-400">Loading movies…</p>}>
+          <MoviesPage params={params} />
+        </Suspense>
+      </div>
     </GenresProvider>
   );
 }

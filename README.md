@@ -1,6 +1,6 @@
 # MovieFlix
 
-A movie browser built with Next.js (App Router), TypeScript, Tailwind CSS and Zod, using data from [The Movie Database (TMDB)](https://www.themoviedb.org/).
+A movie preview browser built with Next.js (App Router), TypeScript, Tailwind CSS and Zod, using data from [The Movie Database (TMDB)](https://www.themoviedb.org/).
 
 ## Requirements
 
@@ -44,23 +44,24 @@ Open [http://localhost:3000](http://localhost:3000) in a modern browser (not VSC
 
 ```
 app/
-  page.tsx                  Home page: reads ?genreId, fetches genres, sets up providers
+  page.tsx                  Home page: parses the URL params, fetches genres
   layout.tsx                Root layout and fonts
   api/trailer/[id]/route.ts Looks up a movie's YouTube trailer on TMDB (keeps the API key on the server)
   lib/schema.ts             Zod schemas for TMDB responses; TypeScript types are inferred from them
+  lib/searchParams.ts       Zod schema for the URL params (genre, sort, direction, min votes, page)
   ui/
-    MoviesPage.tsx          Server component: fetches movies for the selected genre
-    MovieGrid.tsx           Responsive grid; applies the current sort
+    MoviesPage.tsx          Server component: fetches one page of movies from TMDB for the current params
+    MovieGrid.tsx           Responsive grid of movie cards
+    Pagination.tsx          Previous/Next links; keeps the other params
     MovieCard.tsx           Poster with hover overlay
     MovieTrailer.tsx        Fetches and shows the trailer after a short hover
     YouTubeEmbed.tsx        YouTube iframe embed
-    TopBar.tsx              Title, genre filter and sort controls
-    GenreSelect.tsx         Genre dropdown; updates the URL
+    TopBar.tsx              Title, filter and sort controls
+    GenreSelect.tsx         Genre dropdown
+    MinVotesSelect.tsx      Minimum vote count dropdown
     SortSelect.tsx          Sort dropdown and direction toggle
+    useSetSearchParam.ts    Changes one URL param, keeps the rest, and resets to page 1
     GenreProvider.tsx       Context: list of genres
-    SortProvider.tsx        Context: current sort key and direction
     Tag.tsx                 Pill-shaped label used for genres
 ```
 
-## Notes
-- **Sorting** I wanted to note that on a production app, sorting at the database level is the practice I would normally go with given a high number of items. I made the product decision (given that it was allowed in the requirements) to do client-side rendering given the scope of this project. Additional complexity would be introduced if we passed sorting to url/request because obscure videos with low popularity may be displayed, among other things.

@@ -9,7 +9,7 @@ export type Genre = z.infer<typeof Genre>;
 const Movie = z.object({
     id: z.number(),
     title: z.string(),
-    poster_path: z.string(),
+    poster_path: z.string().nullable(),
     overview: z.string(),
     release_date: z.string(),
     vote_average: z.number(),
@@ -24,6 +24,8 @@ export const GenresApiResponse = z.object({
 
 export const MoviesApiResponse = z.object({
     results: z.array(Movie),
+    page: z.number(),
+    total_pages: z.number(),
 });
 
 const Video = z.object({
